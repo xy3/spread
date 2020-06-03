@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Speed Reader</title>
+	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+
+</head>
+<body>
+	<div class="row">
+		<form action="#" id="content-form">
+			<label for="content-textarea">Input the text you want to read</label>
+			<textarea name="content" id="content-textarea" cols="30" rows="10">
+			</textarea>
+			<label for="speed_range">Speed: <span id="speed_val">5</span></label>
+			<div class="slidecontainer">
+			  <input type="range" min="1" max="10" value="5" class="slider" id="speed_range">
+			</div>
+			<button type="submit" form="content-form" id="content-form-submit-btn">Submit</button>
+		</form>
+	</div>
+	<div class="row">
+		<div class="col center">
+			<span class="word">Ready?</span>	
+		</div>
+		<div class="progress-bar">
+			<span class="progress"></span>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.5.1.min.js"></script>
+	<script src="js/popup.js"></script>
+</body>
+</html>

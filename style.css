@@ -1,0 +1,76 @@
+html {
+	background: #121212;
+	color: white;
+	margin: 0;
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+	font-size: 22px;
+}
+
+form > * {
+	display: block;
+}
+
+textarea {
+	width: 100%;
+	text-align: left;
+	color: white;
+	font-size: 0.9em;
+	background: #222;
+}
+
+input {
+	background: #222;
+	color: white;
+}
+
+button {
+	background: #FF1CC2;
+	border: 3px solid #700B55;
+	color: white;
+	padding: 10px;
+	margin: 5px 0;
+	min-width: 200px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	cursor: pointer;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+button:hover {
+	background: #FF57D2;
+	border: 3px solid #801563;
+}
+
+.center {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.word {
+	font-weight: bold;
+	font-size: 3em;
+}
+
+.progress-bar {
+	background: #700B55;
+	height: 30px;
+	width: 100%;
+	display: block;
+	position: fixed;
+	bottom: 0;
+}
+
+.progress {
+	height: 30px;
+	width: 0;
+	display: block;
+	background: #FF1CC2;
+	transition: width 0.3s ease;
+}
