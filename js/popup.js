@@ -1,5 +1,5 @@
-const LONG = 1000
-const NORM = 850
+const LONG = 2000
+const NORM = 1000
 
 var normal_delay = NORM
 var long_delay = LONG
@@ -7,18 +7,23 @@ var delay = normal_delay
 var percent_done = 0
 var progress_width = 0
 var timeouts = []
+var i = 0
 
 jQuery(document).ready(function($) {
 
+$('#resume-btn').hide()
+
 $("#content-form").on('submit', run_reader)
 
-function run_reader(e) {
+function run_reader(e, _i=0) {
 	e.preventDefault()
 	// Get user input
 	// var content = $("#content-textarea").val()
 	var speed_input = $("#speed_range").val()
 	var bgpage = chrome.extension.getBackgroundPage()
 	var content = bgpage.content.trim()
+	// Set i back to 0 or to pause position
+	i = _i
 
 	// console.log(content)
 
@@ -30,7 +35,6 @@ function run_reader(e) {
 	$("#content-form-submit-btn").prop("disabled", true)
 	
 	var words = content.split(/\s/)
-	var i = 0	
 	set_speed(speed_input)
 
 	// Allow the user to update the speed on the fly
@@ -41,14 +45,13 @@ function run_reader(e) {
 		}
 	}
 
+
 	function set_speed(new_speed) {
 		// Set delay based on input speed
 		speed = (new_speed - 10) / 100
-		normal_delay = NORM
-		long_delay = LONG // Slowest possible speed
 		// e.g. if speed = 9, the above delays will be 90% shorter
-		normal_delay -= (normal_delay * speed)
-		long_delay -= (long_delay * speed)
+		normal_delay = NORM - (NORM * speed)
+		long_delay = LONG - (LONG * speed)
 		// Set initial delay
 		delay = normal_delay
 	}
@@ -57,7 +60,7 @@ function run_reader(e) {
 	    $(".word").text(words[i])
 	    update_speed()
 	    // Words ending with "." may indicate a pause, so use the longer delay instead
-	    if (words[i].endsWith(".")) {
+	    if (words[i].endsWith(".") || words[i].endsWith('."')) {
 	    	delay = long_delay
 	    } else {
 	    	delay = normal_delay
@@ -89,10 +92,19 @@ $('#speed_range').on('change', function(event) {
 })
 
 
-$('#stop-btn').on('click', function(event) {
+$('#pause-btn').on('click', function(event) {
 	event.preventDefault()
 	stop_timeouts()
-	// window.close()
+	$(this).hide()
+	$('#resume-btn').show()
+})
+
+$('#resume-btn').on('click', function(event) {
+	event.preventDefault()
+	stop_timeouts()
+	$(this).hide()
+	$('#pause-btn').show()
+	run_reader(event, i)
 })
 
 $('#again-btn').on('click', function(event) {
@@ -100,8 +112,7 @@ $('#again-btn').on('click', function(event) {
 	stop_timeouts()
 	percent_done = 0
 	progress_width = 0
-	// $("#content-form-submit-btn").prop("disabled", true)
-	run_reader()
+	run_reader(event)
 })
 
 
