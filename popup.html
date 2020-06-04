@@ -7,16 +7,15 @@
 
 </head>
 <body>
-	<div class="row">
+	<div class="row center">
 		<form action="#" id="content-form">
-			<label for="content-textarea">Input the text you want to read</label>
-			<textarea name="content" id="content-textarea" cols="30" rows="10">
-			</textarea>
-			<label for="speed_range">Speed: <span id="speed_val">5</span></label>
+			<label for="speed_range">Speed: <span id="speed_val">10</span></label>
 			<div class="slidecontainer">
-			  <input type="range" min="1" max="10" value="5" class="slider" id="speed_range">
+			  <input type="range" min="10" max="100" value="10" class="slider" id="speed_range">
 			</div>
-			<button type="submit" form="content-form" id="content-form-submit-btn">Submit</button>
+			<button type="submit" form="content-form" id="content-form-submit-btn">Start</button>
+			<button id="stop-btn">Stop</button>
+			<button id="again-btn">Read again</button>
 		</form>
 	</div>
 	<div class="row">

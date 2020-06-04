@@ -19,7 +19,8 @@
       "persistent": true
     },
     "permissions": [
-      "https://*/*"
+      "https://*/*",
+      "contextMenus"
     ],
     "content_security_policy": "default-src 'self';",
     "content_scripts": [
